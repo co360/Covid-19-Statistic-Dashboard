@@ -1,0 +1,188 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.6rem;
+  background-color: #202040;
+}
+
+.container {
+  background-color: #ff6363;
+  width: 140rem;
+  height: 80vh;
+  margin: 7rem auto;
+  border-radius: 5rem;
+  overflow: hidden;
+  z-index: -2;
+
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+  box-shadow: -8px 0px 15px 10px rgba(0, 0, 0, 0.2),
+    8px 0px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar {
+  background-color: #ff6363;
+  border-radius: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+
+  .title {
+    font-size: 1.3rem;
+    color: #202040;
+    margin-bottom: 5rem;
+    font-weight: 900;
+    align-self: center;
+  }
+
+  .logo {
+    color: #202040;
+    font-size: 6rem;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+
+    .nav-items {
+      color: #202040;
+
+      padding: 1rem 3rem;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
+        color: #f0effd;
+      }
+
+      .fas {
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+      }
+    }
+    .selected {
+      color: #f0effd;
+    }
+  }
+}
+
+.dashboard {
+  background-color: #f0effd;
+  border-radius: 5rem;
+  padding: 2rem;
+  box-shadow: -5px 0px 15px 0px rgba(0, 0, 0, 0.3);
+
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 2.2rem;
+
+  :nth-child(odd) {
+    // background-color: red;
+  }
+
+  h1 {
+    position: absolute;
+    font-size: 2.2rem;
+    top: 0;
+    left: 0;
+  }
+
+  .globalStats {
+    grid-column: 1 / -1;
+    grid-row-start: span 2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .stats-group {
+      display: flex;
+      justify-content: center;
+      height: 80%;
+      // width: 100%;
+      align-items: center;
+      border: 1px solid white;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+
+      background-color: white;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+
+      .stat {
+        text-align: center;
+        padding: 0 1rem;
+        color: #202040;
+
+        &:not(:last-child) {
+          margin-right: 1.5rem;
+        }
+
+        .textStat {
+          font-size: 1.3rem;
+          font-weight: 700;
+        }
+
+        .numStat {
+          font-size: 2.2rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+        }
+      }
+
+      #recovered {
+        color: #6cd300;
+      }
+
+      #total-cases {
+        color: #fd4a6e;
+      }
+
+      #total-deaths {
+        color: #aaa;
+      }
+    }
+  }
+
+  .articles {
+    grid-column: 8 / -1;
+    grid-row: 3 / span 3;
+    background-color: greenyellow;
+  }
+
+  .maps {
+    grid-column: span 7;
+    grid-row: 3 / -1;
+  }
+
+  .updates {
+    grid-column: 8 / -1;
+    grid-row: span 2;
+  }
+
+  .chart {
+    grid-column: 8 / -1;
+    grid-row: span 4;
+  }
+}

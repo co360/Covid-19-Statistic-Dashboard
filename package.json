@@ -1,0 +1,21 @@
+{
+  "name": "covid-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "node-sass": "^4.13.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "node-sass --w main.scss -o style/"
+  },
+  "keywords": [
+    "helath",
+    "corona",
+    "covid19"
+  ],
+  "author": "shahryar rajabpoor",
+  "license": "ISC"
+}
