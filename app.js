@@ -1,12 +1,22 @@
 // ------------------   SELECTORS   ----------------
 const globalStatsDiv = document.querySelector('.globalStats');
+const searchBarList = document.querySelector('.search-bar-list');
 // -------------    EVENT LISTENERS    -------------
 
 // ------------   FUNCTIONS   ----------------------
 
-async function GlobalStats() {
-  const data = await getData('https://corona.lmao.ninja/v2/all');
-  renderGlobalStats(data);
+async function overViewPage() {
+  const globalData = await getData('https://corona.lmao.ninja/v2/all');
+  const iranData = await getData(
+    'https://corona.lmao.ninja/v2/historical/Iran?lastdays=30'
+  );
+  const countriesStats = await getData(
+    'https://corona.lmao.ninja/v2/countries?sort=cases'
+  );
+
+  renderSearchBar(countriesStats);
+  renderIranChart(iranData);
+  renderGlobalStats(globalData);
 }
 
 // ---- sub functions -------
@@ -37,7 +47,7 @@ function renderGlobalStats(data) {
 
     <div class="stats-group">
     <div class="stat" id="total-cases">
-      <div class="numStat">${cases / 1000000}</div>
+      <div class="numStat">${cases}</div>
       <p class="textStat">total&nbspcases</p>
         </div>
     <div class="stat" id="recovered">
@@ -94,4 +104,60 @@ function renderGlobalStats(data) {
   );
 }
 
-GlobalStats();
+function renderIranChart(data) {
+  const { cases, deaths, recovered } = data.timeline;
+  // getting data from object
+  const casesTime = Object.keys(cases);
+  const casesValue = Object.values(cases);
+  const deathsValue = Object.values(deaths);
+  const recoveredValue = Object.values(recovered);
+
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: casesTime,
+      datasets: [
+        {
+          label: 'Iran Total Cases',
+          data: casesValue,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+        },
+        {
+          label: 'Iran Recovered',
+          data: recoveredValue,
+          backgroundColor: 'rgb(108, 209, 0, 0.3)',
+          borderColor: 'rgb(108, 209, 0)',
+          borderWidth: 1,
+        },
+        {
+          label: 'Iran Total Deaths',
+          data: deathsValue,
+          backgroundColor: 'rgb(170, 170, 170, 0.8)',
+          borderColor: 'rgb(0,0,0,0.6)',
+          borderWidth: 1,
+        },
+      ],
+    },
+  });
+}
+
+function renderSearchBar(data) {
+  console.log(data);
+  for (let country of data) {
+    console.log(country);
+    const { country: keshvar, cases } = country;
+    searchBarList.insertAdjacentHTML(
+      'beforeend',
+      `
+    <li class="search-bar-list-item">
+      <span class="search-bar-list-item-stats">${cases / 1000}</span>
+        ${keshvar}</li>
+    `
+    );
+  }
+}
+// ------------ function calls ---------------------
+overViewPage();

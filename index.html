@@ -13,8 +13,8 @@
       integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <link rel="stylesheet" href="style/main.css" />
-
   
 
     <title>Corona Tracker</title>
@@ -29,9 +29,9 @@
         <i class="fas fa-virus logo"></i>
         <!-- <h3 class="title">Covid-19 Global Trend</!--> 
         <ul>
-          <li class="nav-items selected"><i class="fas fa-home "></i> Overview</li>
+          <li class="nav-items selected"><i class="fas fa-home "></i><br>Overview</li>
           <li class="nav-items">
-            <i class="fas fa-head-side-cough"></i> Symptoms
+            <i class="fas fa-head-side-cough"></i><br>Symptoms
           </li>
           <li class="nav-items"><i class="fas fa-flask"></i></br>TestYourself</li>
           <li class="nav-items">
@@ -47,10 +47,29 @@
         <div class="globalStats dash-item">
         </div>
         <div class="articles dash-item">articles</div>
-        <div class="maps dash-item">maps</div>
-        <div class="chart dash-item">corona vs sars</div>
+        <div class="maps dash-item">
+          <div class="search-bar">
+            <div>
+              <i class="fas fa-search"></i>
+              <input class="search-bar-input"type="text" placeholder="Search...">
+            </div>
+         
+            <ul class="search-bar-list">
+            </ul>
+          </div>
+          <div class="world-map"><img width="600px" src="/maps-general-features-world-bubble-map.png" alt=""></div>
+          <div class="analytical-chart">
+            <p>Iran Statistic</p>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="dash-item">corona vs sars</div>
       </div>
+
     </div>
+
+    
+
     <script src="app.js"></script>
     
   </body>
