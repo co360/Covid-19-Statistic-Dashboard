@@ -1,7 +1,11 @@
+// ------------ function calls ---------------------
+overViewPage();
+
 // ------------------   SELECTORS   ----------------
 const globalStatsDiv = document.querySelector('.globalStats');
 const searchBarList = document.querySelector('.search-bar-list');
 const searchInput = document.querySelector('.search-bar-input');
+let myChart = document.querySelector('#myChart');
 let ctx = document.getElementById('myChart').getContext('2d');
 
 // -------------   EVENT LISTENERS    -------------
@@ -16,10 +20,10 @@ searchBarList.addEventListener('click', (e) => {
         'https://corona.lmao.ninja/v2/historical',
         countryName
       );
-
+      myChart.innerHTML = '';
       renderBarChart(data);
     }
-    ctx.innerHTML = '';
+
     renderChartAgain();
   }
 });
@@ -49,8 +53,6 @@ async function overViewPage() {
   renderGlobalChart(globalDaily);
   renderGlobalStats(globalData);
 }
-
-// ---- sub functions -------
 
 function filterList(term) {
   Array.from(searchBarList.children)
@@ -262,5 +264,3 @@ function renderGlobalChart(data) {
     },
   });
 }
-// ------------ function calls ---------------------
-overViewPage();

@@ -6,8 +6,18 @@
   box-sizing: border-box;
 }
 
+// $bp-largest: 75em; // 1200px
+// $bp-large: 68.75em; // 1100px
+// $bp-medium: 56.25em; // 900px
+// $bp-small: 37.5em; // 600px
+// $bp-smallest: 31.25em; // 500px
+
 html {
   font-size: 62.5%;
+
+  @media only screen and (max-width: 93.75em) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -23,7 +33,7 @@ a {
 
 .container {
   background-color: #ff6363;
-  width: 150rem;
+  max-width: 150rem;
   height: 93vh;
   margin: 3rem auto;
   border-radius: 5rem;
@@ -34,6 +44,12 @@ a {
   grid-template-columns: 1fr 12fr;
   box-shadow: -8px 0px 15px 10px rgba(0, 0, 0, 0.2),
     8px 0px 15px 0px rgba(0, 0, 0, 0.2);
+
+  @media only screen and (max-width: 75em) {
+    margin: 0;
+    height: 100vh;
+    border-radius: 0;
+  }
 }
 
 .nav-bar {
@@ -93,13 +109,20 @@ a {
   padding: 2rem;
   box-shadow: -5px 0px 15px 0px rgba(0, 0, 0, 0.3);
   overflow: auto;
-  // z-index: 1;
 
   display: grid;
 
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(15, 1fr);
   grid-gap: 2rem;
+
+  @media only screen and (max-width: 93.75em) {
+    border-radius: 0;
+  }
+
+  @media only screen and (max-width: 75em) {
+    grid-gap: 1rem;
+  }
 
   h1 {
     position: absolute;
@@ -116,7 +139,6 @@ a {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    // border-bottom: 1px solid rgba(51, 51, 51, 0.102);
 
     .stats-group {
       display: flex;
